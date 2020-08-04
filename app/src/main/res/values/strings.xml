@@ -12,4 +12,5 @@
     <string name="incorrect_toast">Incorrect!</string>
     <string name="prev_button">PREVIOUS BUTTON!</string>
     <string name="next_button">NEXT BUTTON!</string>
+    <string name="percent_answer">Your result </string>
 </resources>
