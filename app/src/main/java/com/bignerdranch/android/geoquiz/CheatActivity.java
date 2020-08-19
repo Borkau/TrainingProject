@@ -37,7 +37,7 @@ public class CheatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
         if(savedInstanceState != null) {
-            setAnswerShownresult(true);
+            setAnswerShownresult(true); //method call with the flag of the pressed button
         }
 
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
@@ -52,7 +52,7 @@ public class CheatActivity extends AppCompatActivity {
                     mAnswerTextView.setText(R.string.false_button);
                 }
                 setAnswerShownresult(true);
-                mCheater = true;
+                mCheater = true; //flag
             }
         });
     }
