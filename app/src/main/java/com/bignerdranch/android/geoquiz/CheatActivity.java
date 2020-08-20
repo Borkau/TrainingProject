@@ -2,10 +2,14 @@ package com.bignerdranch.android.geoquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -46,13 +50,30 @@ public class CheatActivity extends AppCompatActivity {
         mShowAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mAnswerIsTrue) {
+                if (mAnswerIsTrue) {
                     mAnswerTextView.setText(R.string.true_button);
                 } else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
                 setAnswerShownresult(true);
                 mCheater = true; //flag
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // check API version
+                    int cx = mShowAnswerButton.getWidth() / 2; //animation button circle
+                    int cy = mShowAnswerButton.getHeight() / 2;
+                    float radius = mShowAnswerButton.getWidth();
+                    Animator anim = ViewAnimationUtils.createCircularReveal(mShowAnswerButton, cx, cy, radius, 0);
+                    anim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            mShowAnswerButton.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                    anim.start();
+                } else {
+                    mShowAnswerButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
