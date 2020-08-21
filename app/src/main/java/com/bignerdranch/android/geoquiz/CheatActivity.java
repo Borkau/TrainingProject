@@ -23,14 +23,17 @@ public class CheatActivity extends AppCompatActivity {
 
     private boolean mAnswerIsTrue;
     private TextView mAnswerTextView;
+    private TextView mShowApiLevel;
     private Button mShowAnswerButton;
     private boolean mCheater; // a boolean variable to store the value of the "Cheat!"
+    private int sdkVersion = Build.VERSION.SDK_INT;
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue) {
         Intent intent = new Intent(packageContext, CheatActivity.class);
         intent.putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue);
         return intent;
     }
+
 
     public static boolean wasAnswerShown(Intent result) {
         return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
@@ -47,6 +50,8 @@ public class CheatActivity extends AppCompatActivity {
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
         mShowAnswerButton = (Button) findViewById(R.id.show_answer_button);
+        mShowApiLevel = (TextView) findViewById(R.id.api_level_text);
+        mShowApiLevel.append(" " + String.valueOf(sdkVersion));
         mShowAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

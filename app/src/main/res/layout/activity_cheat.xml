@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:padding="24dp"
         android:text="@string/warning_text">
-
     </TextView>
 
     <LinearLayout
@@ -39,6 +38,15 @@
                     android:text="@string/show_answer_button">
                 </Button>
             </LinearLayout>
+
+    <TextView
+        android:id="@+id/api_level_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:text="@string/api_level_text">
+
+    </TextView>
 
 
 </LinearLayout>
